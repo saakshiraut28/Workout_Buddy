@@ -1,0 +1,39 @@
+1. Create an folder for project.
+2. Create a backend folder.
+3. Create a server file in backend folder.
+4. After that initialize the backend folder which will then create a package.json file in the backend directory.
+5. Install Express.
+6. Initialize Express app in severe.js
+7. Make the app listen to port 4000.
+8. Once it is listening install nodemon globally. Now what this will do is whenever there is change in server.js that is the server side script we won't have to rerun the server.js file each time we make any changes to it by using the command " npm server.js"
+9. Now as we are using "nodemon server.js" command we can make this more precise by simply editing the package.json file include one more script " dev: nodemon server.js".
+// Setting up Environment file.
+Why is it needed? It is needed when we have store a few variables that will be used throught out the project, which can include the portnumber, the secret phrases for db etc.
+10. Create evironment file.
+11. Define your variavbles for the PORT.
+12. Install dotenv package. and Import the file in server-side script. 
+13. Change the Port to process.env.PORT
+
+// Creating a Middleware inorder to console log the path and the method of the request coming in.
+1. In the server.js file create a function app.use() inside which pass the parameter (req, res, next) where in passing next is very essential. now console.log all the req path and methods.
+2. Use express.json() so that we can use the req object in any routes. Else we cannot use the req object when we need to make changes to the server by adding data or updating it.
+
+// Creating Routes for handling different requests.
+1. Inside the backend folder create routes folder.
+2. Creating routes for the workout cards/ticket whatever.
+3. Inside the router file import the express js and set the router = express.Router.
+4. Create some router in this routerfile and then export it.
+5. Import all the router files in the server.js and make routes on particular path. Support app.use('/api/workouts', workoutRoutes). Meaning after a request of some type is fire from this particular path the response will be handled by the router workoutroutes.js file.
+6. Inside the workout.js file all the routes will be defined.
+
+// Setup database on Mongo
+1. Go to MongoDB Atlas site. Set up a database cluster.
+2. Install mongoose. Mongoose is a ODM library. Object Data Modelling. It wraps the object in the code to a document representation of data.
+3. Import mongoose in the Server file.
+4. Initialize a constant. 
+3. Connect to database using URI. .connect(), .then() (Listen to the port only when db is connected), .catch()
+
+// Creating a Schema
+1. Create a models folder. Inside which create a workoutschema.js file. We'll define the schema in this file.
+2. Next create an Object we want using the new Schema() method.
+3. Export the model.
