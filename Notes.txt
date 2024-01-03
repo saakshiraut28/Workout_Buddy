@@ -37,3 +37,17 @@ Why is it needed? It is needed when we have store a few variables that will be u
 1. Create a models folder. Inside which create a workoutschema.js file. We'll define the schema in this file.
 2. Next create an Object we want using the new Schema() method.
 3. Export the model.
+
+// Let's create a way to post new workout info
+1. In the routes file firstly import the Workout schema.
+2. In the post method request all the info related to the workout using a try an error block.
+
+// Creating Controllers. 
+1. Instead of adding all the methods inside the router file. We can create Controllers.
+2. Create a directory name Controllers. Within the directory create a file named workoutControls.
+3. In the File create different functions to:
+        -> Get all the workouts
+        -> Get a single workout
+        -> Create a new workout
+        -> Delete a workout
+        -> Update a workout

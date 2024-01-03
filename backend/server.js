@@ -9,7 +9,7 @@ const workoutRoutes = require("./routes/workouts");
 const app = express();
 
 // Create middleware kinda thing
-app.use(express.json());
+app.use(express.json()); // Will help us to pass JSON object on request
 app.use("/", (req, res, next) => {
   next();
 });

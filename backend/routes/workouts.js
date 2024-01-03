@@ -1,6 +1,9 @@
 /** @format */
 
 const express = require("express");
+const Workout = require("../models/workoutSchema");
+
+const { createWorkout } = require("../controllers/workoutcontrols");
 
 const router = express.Router();
 
@@ -12,9 +15,7 @@ router.get("/:id", (req, res) => {
   res.json({ msg: "GET a single workout." });
 });
 
-router.post("/", (req, res) => {
-  res.json({ msg: "CREATE new workout." });
-});
+router.post("/", createWorkout);
 
 router.delete("/:id", (req, res) => {
   res.json({ msg: "DELETE a workout." });
