@@ -46,8 +46,8 @@ Why is it needed? It is needed when we have store a few variables that will be u
 1. Instead of adding all the methods inside the router file. We can create Controllers.
 2. Create a directory name Controllers. Within the directory create a file named workoutControls.
 3. In the File create different functions to:
-        -> Get all the workouts
-        -> Get a single workout
-        -> Create a new workout
-        -> Delete a workout
-        -> Update a workout
+        -> Get all the workouts [Workout.find({}).sort()]
+        -> Get a single workout [Workout.findById()]
+        -> Create a new workout [Workout.create({title, reps, load})]
+        -> Delete a workout [Workout.findByIdAndDelete()]
+        -> Update a workout [Workout.findByIdAndUpdate()]
