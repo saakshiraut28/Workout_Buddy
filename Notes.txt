@@ -51,3 +51,7 @@ Why is it needed? It is needed when we have store a few variables that will be u
         -> Create a new workout [Workout.create({title, reps, load})]
         -> Delete a workout [Workout.findByIdAndDelete()]
         -> Update a workout [Workout.findByIdAndUpdate()]
+
+// Creating frontend.
+1. Create a react app in frontend folder.
+2. Install router dom which will be used for navigation.
