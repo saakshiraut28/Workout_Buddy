@@ -28,5 +28,3 @@ mongo
   .catch((error) => {
     console.log(error);
   });
-
-// Listen to the port number
