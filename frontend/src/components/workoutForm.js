@@ -28,11 +28,12 @@ const Form = () => {
       setLoad("");
       setReps("");
       setError(null);
+      window.location.reload();
       console.log("New workout added.");
     }
   };
   return (
-    <div className="form max-w-xl bg-[#fff] py-5 px-5 md:px-10">
+    <div className="form max-w-xl bg-[#fff] py-5 px-5 md:px-10 ">
       <p className="text-lg font-bold text-gray-700">Fill up a new workout!!</p>
       <form className="space-y-4 py-5 mx-auto" onSubmit={handleSubmit}>
         <input

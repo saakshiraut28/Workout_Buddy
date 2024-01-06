@@ -2,7 +2,7 @@
 
 const WorkoutDetails = ({ workout }) => {
   return (
-    <div className="Details grid bg-white border px-5 md:px-10 space-y-1 py-5 ">
+    <div className="Details grid bg-white border px-5 md:px-10 space-y-1 py-5 my-4">
       <p className="text-md font-bold text-[#1fb84e]">{workout.title}</p>
       <p className="text-sm font-regular text-gray-700">Reps: {workout.reps}</p>
       <p className="text-sm font-regular text-gray-700">

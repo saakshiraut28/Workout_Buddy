@@ -71,3 +71,11 @@ useEffect(() => {
     fetchWorkout();
   }, []);
 
+// Posting the data
+1. Inorder to post the data. 
+2. Use the fetch, and add a second argument for properties like method, body: {title, reps, load}, and headers.
+
+// Context
+1. Wrap the root element i.e <App /> within the Context.Provider.
+2. Use the useReducer hook.
+3. 
