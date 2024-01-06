@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Nav() {
   return (
     <>
-      <div className="container bg-[#fff] m-auto py-5 px-10">
+      <div className="container bg-[#fff] m-auto py-5 px-5 md:px-20">
         <nav className="flex items-center justify-between content-between ">
           <div className="title text-xl font-bold">
             <span className="headLink">

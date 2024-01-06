@@ -55,3 +55,6 @@ Why is it needed? It is needed when we have store a few variables that will be u
 // Creating frontend.
 1. Create a react app in frontend folder.
 2. Install router dom which will be used for navigation.
+
+// Fetching the data
+1. We'll need useState and useEffect hooks. 
