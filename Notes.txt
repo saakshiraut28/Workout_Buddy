@@ -58,3 +58,16 @@ Why is it needed? It is needed when we have store a few variables that will be u
 
 // Fetching the data
 1. We'll need useState and useEffect hooks. 
+useEffect(() => {
+    const fetchWorkout = async () => {
+      const response = await fetch("/api/workouts/");
+      const json = await response.json();
+
+      if (response.ok) {
+        setWorkouts(json);
+      }
+    };
+
+    fetchWorkout();
+  }, []);
+

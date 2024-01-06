@@ -6,9 +6,31 @@ const Form = () => {
   const [title, setTitle] = useState("");
   const [reps, setReps] = useState("");
   const [load, setLoad] = useState("");
-
+  const [error, setError] = useState("");
   // Passing on the data to the DB
-  const handleSubmit = (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const workout = { title, reps, load };
+    const response = await fetch("api/workouts/", {
+      method: "POST",
+      body: JSON.stringify(workout),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      setTitle("");
+      setLoad("");
+      setReps("");
+      setError(null);
+      console.log("New workout added.");
+    }
+  };
   return (
     <div className="form max-w-xl bg-[#fff] py-5 px-5 md:px-10">
       <p className="text-lg font-bold text-gray-700">Fill up a new workout!!</p>
@@ -35,10 +57,7 @@ const Form = () => {
           onChange={(e) => setLoad(e.target.value)}
         />
 
-        <button
-          className="mx-auto bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 text-white rounded-lg"
-          type="submit"
-        >
+        <button className="mx-auto bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 text-white rounded-lg">
           Create
         </button>
       </form>
