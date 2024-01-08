@@ -6,11 +6,13 @@ const Form = () => {
   const [title, setTitle] = useState("");
   const [reps, setReps] = useState("");
   const [load, setLoad] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
   // Passing on the data to the DB
   const handleSubmit = async (e) => {
     e.preventDefault();
     const workout = { title, reps, load };
+
     const response = await fetch("api/workouts/", {
       method: "POST",
       body: JSON.stringify(workout),
@@ -22,6 +24,7 @@ const Form = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
       setTitle("");
@@ -37,30 +40,42 @@ const Form = () => {
       <p className="text-lg font-bold text-gray-700">Fill up a new workout!!</p>
       <form className="space-y-4 py-5 mx-auto" onSubmit={handleSubmit}>
         <input
-          className="w-full border-b-2 outline-none hover:border-black text-gray-700"
+          className={
+            emptyFields.includes("title")
+              ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
+              : "w-full border-b-2 outline-none hover:border-black text-gray-700"
+          }
           placeholder="Title"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
-          className="w-full border-b-2 outline-none hover:border-black text-gray-700"
+          className={
+            emptyFields.includes("reps")
+              ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
+              : "w-full border-b-2 outline-none hover:border-black text-gray-700"
+          }
           placeholder="Reps"
           type="number"
           value={reps}
           onChange={(e) => setReps(e.target.value)}
         />
         <input
-          className="w-full border-b-2 outline-none hover:border-black text-gray-700"
+          className={
+            emptyFields.includes("loads")
+              ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
+              : "w-full border-b-2 outline-none hover:border-black text-gray-700"
+          }
           placeholder="Load (kg)"
           type="number"
           value={load}
           onChange={(e) => setLoad(e.target.value)}
         />
-
         <button className="mx-auto bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 text-white rounded-lg">
           Create
         </button>
+        <p className="w-full text-[#fa0000ba]">{error}</p>
       </form>
     </div>
   );
