@@ -5,13 +5,13 @@ import { useState } from "react";
 const Form = () => {
   const [title, setTitle] = useState("");
   const [reps, setReps] = useState("");
-  const [load, setLoad] = useState("");
+  const [loads, setLoad] = useState("");
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
   // Passing on the data to the DB
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const workout = { title, reps, load };
+    const workout = { title, reps, loads };
 
     const response = await fetch("api/workouts/", {
       method: "POST",
@@ -69,7 +69,7 @@ const Form = () => {
           }
           placeholder="Load (kg)"
           type="number"
-          value={load}
+          value={loads}
           onChange={(e) => setLoad(e.target.value)}
         />
         <button className="mx-auto bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 text-white rounded-lg">
