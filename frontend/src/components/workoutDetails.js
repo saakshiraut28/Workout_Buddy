@@ -1,5 +1,7 @@
 /** @format */
 
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
 const WorkoutDetails = ({ workout }) => {
   const handleDelete = async () => {
     const response = await fetch("/api/workouts/" + workout._id, {
@@ -27,7 +29,10 @@ const WorkoutDetails = ({ workout }) => {
             Load (kgs): {workout.loads}
           </p>
           <p className="text-sm font-regular text-gray-500">
-            Created At: {workout.createdAt}
+            Created At:{" "}
+            {formatDistanceToNow(new Date(workout.createdAt), {
+              addSuffix: true,
+            })}
           </p>
         </span>
       </div>
