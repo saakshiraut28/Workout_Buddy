@@ -7,7 +7,6 @@ const WorkoutDetails = ({ workout }) => {
     const response = await fetch("/api/workouts/" + workout._id, {
       method: "DELETE",
     });
-    const json = response.json();
 
     if (response.ok) {
       console.log("Workout deleted");
