@@ -1,8 +1,16 @@
 /** @format */
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import WorkoutForm from "../components/workoutForm";
 
 function Nav() {
+  const [open, setOpen] = useState(false);
+
+  const handleLinkClick = (e) => {
+    e.preventDefault();
+    setOpen(!open);
+  };
+
   return (
     <>
       <div className="container bg-[#fff] m-auto py-5 px-5 md:px-20">
@@ -12,9 +20,22 @@ function Nav() {
               Workout <span className="text-[#1fb84e]">B</span>uddy
             </span>
           </div>
-          <div className="title text-md font-bold hover:text-[#1fb84e]">
-            <Link>+ Add</Link>
+          <div
+            className={
+              open
+                ? "title text-md font-bold text-[#1fb84e]"
+                : "title text-md font-bold hover:text-[#1fb84e]"
+            }
+          >
+            <Link onClick={handleLinkClick}>+ Add</Link>
           </div>
+          {open ? (
+            <div className="form absolute mr-auto ml-auto">
+              <WorkoutForm />
+            </div>
+          ) : (
+            <div className="hidden">Hi</div>
+          )}
         </nav>
       </div>
     </>
