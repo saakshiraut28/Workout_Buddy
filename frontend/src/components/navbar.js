@@ -30,7 +30,7 @@ function Nav() {
             <Link onClick={handleLinkClick}>+ Add</Link>
           </div>
           {open ? (
-            <div className="form absolute mr-auto ml-auto">
+            <div className="form absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <WorkoutForm />
             </div>
           ) : (

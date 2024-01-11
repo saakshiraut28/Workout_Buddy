@@ -24,7 +24,6 @@ const Home = () => {
     <>
       <Nav />
       <div className="container m-auto py-5 px-5 md:px-20 bg-[#ececec] h-screen">
-        <WorkoutForm />
         <div className="content m-auto py-5">
           <span className="text-xl font-bold">Workouts: </span>
         </div>
