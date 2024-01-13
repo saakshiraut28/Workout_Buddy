@@ -43,7 +43,7 @@ const Form = () => {
           className={
             emptyFields.includes("title")
               ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
-              : "w-full border-b-2 outline-none hover:border-black text-gray-700"
+              : "w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
           }
           placeholder="Title"
           type="text"
@@ -54,7 +54,7 @@ const Form = () => {
           className={
             emptyFields.includes("reps")
               ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
-              : "w-full border-b-2 outline-none hover:border-black text-gray-700"
+              : "w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
           }
           placeholder="Reps"
           type="number"
@@ -65,7 +65,7 @@ const Form = () => {
           className={
             emptyFields.includes("loads")
               ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
-              : "w-full border-b-2 outline-none hover:border-black text-gray-700"
+              : "w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
           }
           placeholder="Load (kg)"
           type="number"

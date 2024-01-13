@@ -20,17 +20,22 @@ function Nav() {
               Workout <span className="text-[#1fb84e]">B</span>uddy
             </span>
           </div>
-          <div
-            className={
-              open
-                ? "title text-md font-bold text-[#1fb84e]"
-                : "title text-md font-bold hover:text-[#1fb84e]"
-            }
-          >
-            <Link onClick={handleLinkClick}>+ Add</Link>
+          <div className="flex ">
+            <div>
+              <Link>Login</Link>
+            </div>
+            <div
+              className={
+                open
+                  ? "title text-md font-bold text-[#1fb84e]"
+                  : "title text-md font-bold hover:text-[#1fb84e]"
+              }
+            >
+              <Link onClick={handleLinkClick}>+ Add</Link>
+            </div>
           </div>
           {open ? (
-            <div className="absolute bg-[#0000009cgi] w-full h-full left-0 top-16">
+            <div className="absolute bg-[#0000009] w-full h-full left-0 top-16">
               <div className="form absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white">
                 <p className="font-bold w-full text-right py-5 px-5">
                   <Link onClick={handleLinkClick}>X</Link>
