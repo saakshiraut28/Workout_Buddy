@@ -30,7 +30,7 @@ function Nav() {
             <Link onClick={handleLinkClick}>+ Add</Link>
           </div>
           {open ? (
-            <div className="absolute bg-[#0000009c] w-full h-full left-0 top-16">
+            <div className="absolute bg-[#0000009cgi] w-full h-full left-0 top-16">
               <div className="form absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white">
                 <p className="font-bold w-full text-right py-5 px-5">
                   <Link onClick={handleLinkClick}>X</Link>
