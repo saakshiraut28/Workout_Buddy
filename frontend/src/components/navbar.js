@@ -22,7 +22,8 @@ function Nav() {
           </div>
           <div className="flex ">
             <div>
-              <Link>Login</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
             </div>
             <div
               className={

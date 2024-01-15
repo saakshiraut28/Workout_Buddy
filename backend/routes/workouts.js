@@ -9,7 +9,7 @@ const {
   createWorkout,
   deleteWorkout,
   updateWorkout,
-} = require("../controllers/workoutcontrols");
+} = require("../controllers/workoutControls");
 
 const router = express.Router();
 
