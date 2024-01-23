@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   console.log("AuthContext state:", state);
 
   return (
-    <AuthContext.Provider value={{ ...state }}>
+    <AuthContext.Provider value={{ ...state, dispatch }}>
       {/* We use {{ ...state }} the first one indicates that it is dynamic and the inner curly braces indicates that it is object */}
       {children}
     </AuthContext.Provider>
