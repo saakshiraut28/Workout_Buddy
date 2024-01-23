@@ -1,6 +1,6 @@
 /** @format */
 
-function SignUp() {
+const SignUp = () => {
   return (
     <div className="container h-screen flex justify-center items-center">
       <div className="max-w-xl bg-[#fff] py-20 px-5 md:px-10 space-y-10">
@@ -30,6 +30,6 @@ function SignUp() {
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;
