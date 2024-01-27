@@ -1,7 +1,6 @@
 /** @format */
 
 const express = require("express");
-const Workout = require("../models/workoutSchema");
 
 const {
   getWorkouts,
