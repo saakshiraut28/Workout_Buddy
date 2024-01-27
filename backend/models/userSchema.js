@@ -43,7 +43,10 @@ userSchema.statics.loginUser = async function (email, password) {
 
 // static method for signup
 
-userSchema.statics.signUp = async function (email, password) {
+userSchema.statics.signUp = async function (email, password, confirmpassword) {
+  if (password != confirmpassword) {
+    throw Error("Password does not match");
+  }
   if (!email || !password) {
     throw Error("All fields must be filled");
   }

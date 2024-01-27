@@ -5,10 +5,17 @@ import WorkoutForm from "../components/workoutForm";
 
 function Nav() {
   const [open, setOpen] = useState(false);
-
+  const [userStatus, setUserStatus] = useState(
+    sessionStorage.getItem("logged_user") !== null
+  );
   const handleLinkClick = (e) => {
     e.preventDefault();
     setOpen(!open);
+  };
+  const handleLogout = () => {
+    sessionStorage.removeItem("logged_user");
+    setUserStatus(false);
+    window.location.reload();
   };
 
   return (
@@ -20,11 +27,16 @@ function Nav() {
               Workout <span className="text-[#1fb84e]">B</span>uddy
             </span>
           </div>
-          <div className="flex ">
-            <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
+          <div className="flex space-x-4 ">
+            {!userStatus ? (
+              <div className="space-x-4">
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            ) : (
+              <button onClick={handleLogout}>Logout</button>
+            )}
+
             <div
               className={
                 open

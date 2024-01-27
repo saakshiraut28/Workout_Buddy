@@ -11,7 +11,9 @@ const app = express();
 
 // Create middleware kinda thing
 app.use(express.json()); // Will help us to pass JSON object on request
+
 app.use("/", (req, res, next) => {
+  console.log(req.path, req.method);
   next();
 });
 
@@ -23,7 +25,7 @@ app.use("/api/users", userRoutes);
 mongo
   .connect(process.env.MONGo_URI)
   .then(() => {
-    app.listen(4000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Listening to Port ", process.env.PORT);
     });
   })

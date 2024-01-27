@@ -7,6 +7,9 @@ import WorkoutForm from "../components/workoutForm";
 
 const Home = () => {
   const [workouts, setWorkouts] = useState(null);
+  const [userStatus, setUserStatus] = useState(
+    sessionStorage.getItem("logged_user") !== null
+  );
   // Function to fetch data
   useEffect(() => {
     const fetchWorkout = async () => {
@@ -24,15 +27,23 @@ const Home = () => {
     <>
       <Nav />
       <div className="container m-auto py-5 px-5 md:px-20 bg-[#ececec] h-screen">
-        <div className="content m-auto py-5">
-          <span className="text-xl font-bold">Workouts: </span>
-        </div>
-        <div className="workouts text-black">
-          {workouts &&
-            workouts.map((workout) => (
-              <WorkoutDetails key={workout._id} workout={workout} />
-            ))}
-        </div>
+        {userStatus ? (
+          <>
+            <div className="content m-auto py-5">
+              <span className="text-xl font-bold">Workouts: </span>
+            </div>
+            <div className="workouts text-black">
+              {workouts &&
+                workouts.map((workout) => (
+                  <WorkoutDetails key={workout._id} workout={workout} />
+                ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <p>Kindly signup or login to get started</p>
+          </>
+        )}
       </div>
     </>
   );
