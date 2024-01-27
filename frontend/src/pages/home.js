@@ -3,13 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../components/navbar";
 import WorkoutDetails from "../components/workoutDetails";
-import WorkoutForm from "../components/workoutForm";
 
 const Home = () => {
   const [workouts, setWorkouts] = useState(null);
-  const [userStatus, setUserStatus] = useState(
-    sessionStorage.getItem("logged_user") !== null
-  );
+  const [userStatus] = useState(sessionStorage.getItem("logged_user") !== null);
   // Function to fetch data
   useEffect(() => {
     const fetchWorkout = async () => {

@@ -61,6 +61,7 @@ const Login = () => {
             <button className="bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 rounded-lg text-white">
               Login
             </button>
+            <p>{error}</p>
           </div>
         </form>
       </div>
