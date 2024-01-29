@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../components/navbar";
 import WorkoutDetails from "../components/workoutDetails";
+import { Hero } from "./hero";
 
 const Home = () => {
   const [workouts, setWorkouts] = useState(null);
@@ -23,7 +24,7 @@ const Home = () => {
   return (
     <>
       <Nav />
-      <div className="container m-auto py-5 px-5 md:px-20 bg-[#ececec] h-screen">
+      <div className="container m-auto py-5 px-5 md:px-20 h-screen">
         {userStatus ? (
           <>
             <div className="content m-auto py-5">
@@ -38,7 +39,7 @@ const Home = () => {
           </>
         ) : (
           <>
-            <p>Kindly signup or login to get started</p>
+            <Hero />
           </>
         )}
       </div>
