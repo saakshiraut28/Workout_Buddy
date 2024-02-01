@@ -28,7 +28,7 @@ const Login = () => {
         setError(false);
         window.location.reload();
         console.log("New user logged in.");
-        sessionStorage.setItem("logged_user", email);
+        sessionStorage.setItem("logged_user", JSON.stringify(json));
       }
     } catch (error) {
       console.log("network error");

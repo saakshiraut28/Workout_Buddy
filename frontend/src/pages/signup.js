@@ -43,7 +43,7 @@ const Login = () => {
         setError(false);
         window.location.reload();
         console.log("New user signed in.");
-        sessionStorage.setItem("logged_user", email);
+        sessionStorage.setItem("logged_user", json);
       }
     } catch (error) {
       console.log("network error");

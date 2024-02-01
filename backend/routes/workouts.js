@@ -1,7 +1,7 @@
 /** @format */
 
 const express = require("express");
-
+const requireAuth = require("../middleware/requireAuth.js");
 const {
   getWorkouts,
   getSingleWorkout,
@@ -11,6 +11,8 @@ const {
 } = require("../controllers/workoutControls.js");
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 router.get("/", getWorkouts);
 
