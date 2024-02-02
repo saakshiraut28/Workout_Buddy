@@ -1,71 +1,46 @@
 /** @format */
 
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const { login, error, isLoading } = useLogin();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const user = { email, password };
-      const response = await fetch("/api/users/login", {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const json = await response.json();
 
-      if (!response.ok) {
-        setError(json.error);
-      }
-      if (response.ok) {
-        setEmail("");
-        setPassword("");
-        setError(false);
-        window.location.reload();
-        console.log("New user logged in.");
-        sessionStorage.setItem("logged_user", JSON.stringify(json));
-      }
-    } catch (error) {
-      console.log("network error");
-    }
+    await login(email, password);
   };
+
   return (
-    <div className="container h-screen flex justify-center items-center">
-      <div className="max-w-xl bg-[#fff] py-20 px-5 md:px-10 space-y-10">
-        <p className="font-bold text-xl">Login</p>
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <input
-            className="w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
-            placeholder="Email"
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <input
-            className="w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <div className="mx-auto flex w-full justify-center items-center ">
-            <button className="bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 rounded-lg text-white">
-              Login
-            </button>
-            <p>{error}</p>
-          </div>
-        </form>
-      </div>
-    </div>
+    <form
+      className="login absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-20 py-10"
+      onSubmit={handleSubmit}
+    >
+      <h3 className="title text-xl font-bold py-5">Log In</h3>
+      <tr>
+        <label className="title text-md font-medium py-5">Email address:</label>
+        <input
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          className="border border-b-2 outline-none"
+        />
+      </tr>
+      <tr>
+        <label>Password:</label>
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+      </tr>
+
+      <button disabled={isLoading}>Log in</button>
+      {error && <div className="error">{error}</div>}
+    </form>
   );
 };
 

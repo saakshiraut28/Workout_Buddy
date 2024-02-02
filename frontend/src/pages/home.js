@@ -1,50 +1,42 @@
-/** @format */
+import { useEffect }from 'react'
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
-import React, { useEffect, useState } from "react";
-import Nav from "../components/navbar";
-import WorkoutDetails from "../components/workoutDetails";
-import { Hero } from "./hero";
+// components
+import WorkoutDetails from '../components/WorkoutDetails'
+import WorkoutForm from '../components/WorkoutForm'
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState(null);
-  const [userStatus] = useState(sessionStorage.getItem("logged_user") !== null);
-  // Function to fetch data
+  const {workouts, dispatch} = useWorkoutsContext()
+  const {user} = useAuthContext()
+
   useEffect(() => {
-    const fetchWorkout = async () => {
-      const response = await fetch("/api/workouts/");
-      const json = await response.json();
+    const fetchWorkouts = async () => {
+      const response = await fetch('/api/workouts', {
+        headers: {'Authorization': `Bearer ${user.token}`},
+      })
+      const json = await response.json()
 
       if (response.ok) {
-        setWorkouts(json);
+        dispatch({type: 'SET_WORKOUTS', payload: json})
       }
-    };
+    }
 
-    fetchWorkout();
-  }, []);
+    if (user) {
+      fetchWorkouts()
+    }
+  }, [dispatch, user])
+
   return (
-    <>
-      <Nav />
-      <div className="container m-auto py-5 px-5 md:px-20 h-screen">
-        {userStatus ? (
-          <>
-            <div className="content m-auto py-5">
-              <span className="text-xl font-bold">Workouts: </span>
-            </div>
-            <div className="workouts text-black">
-              {workouts &&
-                workouts.map((workout) => (
-                  <WorkoutDetails key={workout._id} workout={workout} />
-                ))}
-            </div>
-          </>
-        ) : (
-          <>
-            <Hero />
-          </>
-        )}
+    <div className="home">
+      <div className="workouts">
+        {workouts && workouts.map((workout) => (
+          <WorkoutDetails key={workout._id} workout={workout} />
+        ))}
       </div>
-    </>
-  );
-};
+      <WorkoutForm />
+    </div>
+  )
+}
 
-export default Home;
+export default Home

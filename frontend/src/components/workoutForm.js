@@ -1,84 +1,83 @@
-/** @format */
+import { useState } from "react"
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
+import { useAuthContext } from '../hooks/useAuthContext'
 
-import { useState } from "react";
+const WorkoutForm = () => {
+  const { dispatch } = useWorkoutsContext()
+  const { user } = useAuthContext()
 
-const Form = () => {
-  const [title, setTitle] = useState("");
-  const [reps, setReps] = useState("");
-  const [loads, setLoad] = useState("");
-  const [error, setError] = useState(null);
-  const [emptyFields, setEmptyFields] = useState([]);
-  // Passing on the data to the DB
+  const [title, setTitle] = useState('')
+  const [load, setLoad] = useState('')
+  const [reps, setReps] = useState('')
+  const [error, setError] = useState(null)
+  const [emptyFields, setEmptyFields] = useState([])
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const workout = { title, reps, loads };
+    e.preventDefault()
 
-    const response = await fetch("api/workouts/", {
-      method: "POST",
+    if (!user) {
+      setError('You must be logged in')
+      return
+    }
+
+    const workout = {title, load, reps}
+
+    const response = await fetch('/api/workouts', {
+      method: 'POST',
       body: JSON.stringify(workout),
       headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+      }
+    })
+    const json = await response.json()
 
     if (!response.ok) {
-      setError(json.error);
-      setEmptyFields(json.emptyFields);
+      setError(json.error)
+      setEmptyFields(json.emptyFields)
     }
     if (response.ok) {
-      setTitle("");
-      setLoad("");
-      setReps("");
-      setError(null);
-      window.location.reload();
-      console.log("New workout added.");
+      setTitle('')
+      setLoad('')
+      setReps('')
+      setError(null)
+      setEmptyFields([])
+      dispatch({type: 'CREATE_WORKOUT', payload: json})
     }
-  };
-  return (
-    <div className="form max-w-xl bg-[#fff] py-5 px-5 md:px-10 ">
-      <p className="text-lg font-bold text-gray-700">Fill up a new workout!!</p>
-      <form className="space-y-4 py-5 mx-auto" onSubmit={handleSubmit}>
-        <input
-          className={
-            emptyFields.includes("title")
-              ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
-              : "w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
-          }
-          placeholder="Title"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          className={
-            emptyFields.includes("reps")
-              ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
-              : "w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
-          }
-          placeholder="Reps"
-          type="number"
-          value={reps}
-          onChange={(e) => setReps(e.target.value)}
-        />
-        <input
-          className={
-            emptyFields.includes("loads")
-              ? "w-full border-b-2 outline-none border-[#fa0000ba] text-gray-700"
-              : "w-full border-b-2 outline-none hover:border-black focus:border-black text-gray-700"
-          }
-          placeholder="Load (kg)"
-          type="number"
-          value={loads}
-          onChange={(e) => setLoad(e.target.value)}
-        />
-        <button className="mx-auto bg-[#1fb84e] hover:bg-[#47c850] px-5 py-2 text-white rounded-lg">
-          Create
-        </button>
-        <p className="w-full text-[#fa0000ba]">{error}</p>
-      </form>
-    </div>
-  );
-};
+  }
 
-export default Form;
+  return (
+    <form className="create" onSubmit={handleSubmit}>
+      <h3>Add a New Workout</h3>
+
+      <label>Excersize Title:</label>
+      <input 
+        type="text"
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
+        className={emptyFields.includes('title') ? 'error' : ''}
+      />
+
+      <label>Load (in kg):</label>
+      <input 
+        type="number"
+        onChange={(e) => setLoad(e.target.value)}
+        value={load}
+        className={emptyFields.includes('load') ? 'error' : ''}
+      />
+
+      <label>Reps:</label>
+      <input 
+        type="number"
+        onChange={(e) => setReps(e.target.value)}
+        value={reps}
+        className={emptyFields.includes('reps') ? 'error' : ''}
+      />
+
+      <button>Add Workout</button>
+      {error && <div className="error">{error}</div>}
+    </form>
+  )
+}
+
+export default WorkoutForm
