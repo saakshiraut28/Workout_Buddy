@@ -50,7 +50,7 @@ const WorkoutForm = () => {
 
   return (
     <form
-      className="wrokoutform bg-white md:px-20 px-6 py-10"
+      className="wrokoutform  bg-white md:px-20 px-6 py-10"
       onSubmit={handleSubmit}
     >
       <h3 className="title text-2xl font-bold py-5">Add a New Workout</h3>

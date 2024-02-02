@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className="pages px-20 py-10">
+        <div className="pages px-6 md:px-20 py-10">
           <Routes>
             <Route
               path="/"

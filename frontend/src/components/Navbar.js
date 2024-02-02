@@ -23,7 +23,7 @@ const Navbar = () => {
         <nav className="flex ">
           {user && (
             <div className="font-medium space-x-4">
-              <span>{user.email}</span>
+              <span>Welcome!</span>
               <button onClick={handleClick}>Log out</button>
             </div>
           )}
